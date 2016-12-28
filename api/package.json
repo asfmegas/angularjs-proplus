@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "estudo da língua inglesa",
+  "main": "index.js",
+  "scripts": {
+    "test": "tbug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/www.github.com/asfmegas.git"
+  },
+  "keywords": [
+    "english"
+  ],
+  "author": "alexsandro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/www.github.com/asfmegas/issues"
+  },
+  "homepage": "https://github.com/www.github.com/asfmegas#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.5"
+  }
+}

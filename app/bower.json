@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "authors": [
+    "Alexsandro Façanha <asfsteel2012@gmail.com>"
+  ],
+  "description": "estudo da língua inglesa",
+  "main": "index",
+  "keywords": [
+    "english"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7"
+  }
+}
