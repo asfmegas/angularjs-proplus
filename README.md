@@ -1,16 +1,12 @@
-proplus
+Proplus English
 
+Auxiliar no estudo de outra língua.
+Deve ser usado, a princípio, como um dicionário pessoal para se guardar textos e palavras a seu gosto.
+Conteúdo de estudo totalmente personalizado, já que é o usuário que adiciona o conteúdo.
 
-Objetivos:
-1)
-Salvar textos e letras de músicas;
-2)
-Salvar significados de palavras ou frases;
-3)
-Ligar as palavras salvas aos textos e letras de músicas com um link.
-Ou seja, criar link nos textos com as palavras já armazenadas;
-4)
-Exibir os significados das palavras armazenas.
+É possível criar um banco de dados para palavras e outro para textos, tudo determinado pelo usuário de acordo com sua necessidade.
+
+Prático e dinâmico.
 
 
 
