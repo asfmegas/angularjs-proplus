@@ -19,7 +19,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.6.1",
-    "bootstrap": "^3.3.7"
+    "angular": "^1.5.6",
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.5.6",
+    "mongoose": "^4.7.5"
   }
 }

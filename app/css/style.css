@@ -1,0 +1,416 @@
+body{
+	padding: 0px;
+	margin: 0px;
+	font-family: "Times New Roman", Times, serif;
+}
+
+/* Padrão Cores */
+.cor-padrao1{
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cor-padrao2{
+	background-color: rgba(0, 0, 0, 1);
+}
+
+.cor-padrao3{
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cor-padrao3:hover{
+	background-color: rgba(245, 245, 240, 0.2);
+}
+
+.cor-padrao4{ /* background do body */
+	background-color: #8c8c8c;
+}
+
+.cor-suave1{
+	background-color: rgba(102, 102, 255, 0.6);
+}
+
+.cor-suave2{
+	background-color: rgba(0, 0, 77, 0.6);
+}
+
+.cor-suave4{
+	background-color: rgba(0, 0, 77, 1);
+}
+
+.cor-quente1{
+	background-color: rgba(128, 26, 0, 0.6);
+}
+
+.cor-quente2{
+	background-color: rgba(102, 20, 0, 0.8);
+}
+
+.cor-quente4{
+	background-color: rgba(179, 36, 0, 1);
+}
+
+/* Cores fontes */
+.font-cor-padrao1{
+	color: #000;
+}
+
+.font-cor-padrao2{
+	color: #000;
+}
+
+.font-cor-padrao2:hover{
+	color: #ccc;
+}
+
+.font-cor-padrao3{
+	color: #fff;
+}
+
+/* Formatação audio */
+audio{
+	position: fixed;
+	top: 10px;
+	left: 1000px;
+}
+
+/* Formatação de butões */
+.button1{
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 0px #000;
+	padding: 5px;
+	width: 120px;
+	border-radius: 3px;
+	border: 0px;
+	cursor: pointer;
+	margin-left: 10px;
+	box-shadow: 0px 0px 0px #000;
+	transition: box-shadow 0.6s;
+}
+
+.button1:hover{
+	box-shadow: -5px -5px 5px #000;
+}
+
+/* Formatação links */
+.link1{
+	text-decoration: none;
+	padding: 6px;
+	font-weight: bold;
+}
+
+.link3{
+	text-decoration: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/* Formatação input text */
+.input-padrao{
+	width: 500px;
+	height: 20px;
+	border 0px;
+	border-radius: 3px;
+	margin: 5px;
+	padding: 2px;
+	font-size: 18px;
+	color: white;
+}
+
+/* Formatação padrão */
+.selecao{
+	padding: 5px;
+	margin: 3px;
+}
+
+/* Formatação textarea */
+.textarea1{
+	border: 0px;
+	font-size: 18px;
+	resize: none;
+	padding: 10px;
+}
+
+/* Interface */
+div#cabecalho{
+	width: auto;
+	margin-top: 0px;
+	height: 60px;
+}
+
+/* Cabeçalho */
+div#proplus{
+	position: fixed;
+	font-size: 28px;
+	font-weight: bold;
+	top: 10px;
+	left: 10px;
+	text-shadow: 4px 4px 10px #fff;
+	word-spacing: 10px;
+	letter-spacing: 2px;
+}
+
+/* Menu */
+div#menu{
+	position: fixed;
+	width: 1050px;
+	height: 30px;
+	border-radius: 0px 0px 0px 20px;
+	left: 330px;
+	padding: 10px 10px 10px 20px; //cima baixo direita esquerda
+}
+
+.botao-cor{
+	width: 30px;
+	height: 30px;
+	border: 0px;
+	border-radius: 15px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px #000;
+	transition: box-shadow 0.6s;
+}
+
+.botao-cor:hover{
+	box-shadow: -4px -5px 8px #000;
+}
+
+div#div-cores{
+	position: fixed;
+	top: 10px;
+	left: 850px;
+	// background-color: black;
+}
+
+/* Pesquisa Texto */
+div#pesquisa-texto{
+	width: 900px;
+	min-height: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+div#menu-texto{
+	padding: 10px;
+	border-radius: 10px 10px 0px 0px;
+}
+
+select#selecao-texto{
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px;
+	margin-bottom: 10px;
+	width: 200px;
+	border: 0px;
+}
+
+/* Pesquisa de Palavras */
+div#pesquisa-palavras{
+	width: 900px;
+	min-height: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+div#menu-palavras{
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.form-palavras{
+	width: 426px;
+	height: 150px
+}
+
+.input-palavras{
+	margin-left: 200px;
+	text-align: center;
+}
+
+.p-palavras{
+	text-align: center;
+	margin-top: 10px;
+}
+
+.texto{
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+	background-color: black;
+}
+
+div#radio-palavra{
+	width: 260px;
+	height: 20px;
+	padding: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-bottom: 3px;
+}
+
+/* Principal */
+div#principal{
+	width: auto;
+	padding: 10px;
+	min-height: 550px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+div#menu-texto-dois{
+	height: 30px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+div#principal textarea{
+	margin-top: 10px;
+	margin-left: 3px;
+	width: 630px;
+	min-height: 550px;
+}
+
+input#titulo-texto{
+	width: 500px;
+	height: 20px;
+	border-radius: 3px;
+	border: 0px;
+	padding: 5px;
+	font-size: 20px;
+	color: #fff;
+}
+
+.radio-texto{
+	padding: 5px;
+	border-radius: 3px;
+	font-weight: bold;
+}
+
+/* Simples salve - uma frame para ser visualizada sobre
+a frame principal */
+div#simples-salve{
+	position: fixed;
+	border-radius: 10px;
+	width: 750px;
+	height: 40px;
+	left: 580px;
+	top: 130px;
+	padding: 10px;
+}
+
+.sim-botao-exibir{
+	position: fixed;
+	left: 1300px;
+	top: 145px;
+	border-radius: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	border: 0px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.sim-input{
+	padding: 5px;
+	width: 260px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	margin-top: 3px;
+	border: 0px;
+	border-radius: 4px;
+	margin-right: 10px;
+}
+
+.sim-botao-salvar{
+	border-radius: 3px;
+	font-size: 18px;
+	font-weight: bold;
+	border: 0px;
+	width: 100px;
+	height: 30px;
+	margin-top: -2px;
+	cursor: pointer;
+}
+
+.sim-botao-efeito{
+	box-shadow: 0px 0px 0px #000;
+	transition: box-shadow 0.6s;
+}
+
+.sim-botao-efeito:hover{
+	box-shadow: 5px 5px 10px #000;
+}
+
+/* Search Word Content */
+div#search-word{
+	position: fixed;
+	left: 975px;
+	top: 190px;
+	border-radius: 10px;
+	width: 350px;
+	height: 480px;
+	padding: 10px;
+}
+
+.sea-botao-exibir{
+	position: fixed;
+	left: 1300px;
+	top: 200px;
+	border-radius: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	border: 0px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.sea-word-area{
+	border-radius: 10px;
+	width: 290px;
+	height: 70px;
+}
+
+.sea-input{
+	width: 300px;
+	border-radius: 5px;
+	border: 0px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	padding: 5px;
+	text-align: center;
+}
+
+a#sea-word{
+	text-decoration: none;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #000;
+	padding: 0px;
+}
+p#sea-word-p{
+	padding: 2px;
+	margin-top: 2px;
+	margin-bottom: 0px;
+	cursor: pointer;
+}
+
+/* Rodapé */
+div#rodape{
+	padding-top: 5px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 10px;
+	width: auto;
+	height: 35px;
+}

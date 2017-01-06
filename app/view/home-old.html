@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="proplus">
+<head>
+	<meta charset="UTF-8">
+	<title>HOME - Proplus English</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+<body ng-controller="homeCtrl">
+	<div class="cabecalho">
+		<h1>PROPLUS ENGLISH</h1>
+	</div>
+	<div class="interface">
+		<div id="div-pesquisa">
+			<form action="">
+				<input type="text" class="input-text-search" ng-model="search" placeholder="Search Text">
+				<p ng-repeat="texto in textos | filter:search"><a href="#" ng-click="buscarUmTexto(texto._id)">{{texto.titulo}}</a></p>
+			</form>
+		</div>
+
+		<div id="div-textos">
+			<form action="">
+				<button ng-click="novo()">Novo</button>
+				<button ng-click="exibir()">Editar</button>
+				<button ng-show="isVisible" ng-click="saveText(textoSelecionado,dados)">Salvar</button>
+				<button ng-show="isVisible" ng-click="alterarDados(textoSelecionado,dados)">Alterar</button>
+				<button ng-show="isVisible" ng-click="removeText(textoSelecionado._id)">Apagar</button>
+				<button ng-click="ocultarJanela()">Words</button>
+				<hr/>
+
+				<div ng-hide="isVisible">{{textoSelecionado.titulo}}</div>
+				<input type="text" class="input-text-form" ng-show="isVisible" ng-model="dados.titulo" ng-value="limparCampos(textoSelecionado.titulo)">
+				
+				<hr/>
+
+				<!-- <div class="format-div-um" ng-hide="isVisible">{{textoSelecionado.texto}}</div> -->
+				<textarea class="area-text-block" readonly="readonly" cols="30" rows="10" ng-model="dados.texto" ng-hide="isVisibleOne" ng-disabled="false" ng-value="limparCampos(textoSelecionado.texto)"></textarea>
+				<textarea class="area-text-um" cols="30" rows="10" ng-model="dados.texto" ng-show="isVisibleOne" ng-disabled="false" ng-value="limparCampos(textoSelecionado.texto)"></textarea>
+
+				<hr/>
+
+				<div class="format-div-dois" ng-hide="isVisible">{{textoSelecionado.traducao}}</div>
+				<textarea class="area-text area-text-dois" cols="30" rows="8" ng-model="dados.traducao" ng-show="isVisible" ng-value="limparCampos(textoSelecionado.traducao)"></textarea>
+			</form>
+		</div>
+		<div id="div-words" ng-show="windowWord">
+			<input type="text" ng-model="searchWord" placeholder="Search Word">
+			<form action="">
+				<textarea class="area-word-um" cols="30" rows="10" ng-value=""></textarea>
+				<textarea class="area-word-dois" cols="30" rows="10" ng-value=""></textarea>
+				<div class="div-button">
+					<button type="button" ng-click="">Salvar</button>
+					<button type="button" ng-click="">Apagar</button>
+					<button type="button" ng-click="">Alterar</button>
+					<button type="button" ng-click="ocultarJanela()">Fechar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="rodape">Alexsandro Facanha - asfsteel2012@gmail.com </div>
+
+
+
+	<script src="../lib/angular/angular.min.js"></script>
+	<script src="../lib/angular-route/angular-route.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script src="../js/controllers/homeCtrl.js"></script>
+	<script src="../js/services/httpAPIServices.js"></script>
+</body>
+</html>
