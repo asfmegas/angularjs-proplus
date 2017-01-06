@@ -6,27 +6,32 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 	$scope.valueButtonSearch = "<<";
 	$scope.buttonSimpleVisible = false;
 	$scope.buttonSearchVisible = false;
+	$scope.proplusLogo = "proplus";
 	
 	$scope.corFrame1 = "cor-padrao1";
 	$scope.corFrame2 = "cor-padrao2";
 	$scope.corFrame4 = "cor-padrao4";
+	$scope.corFrame5 = "cor-padrao5";
 
 	$scope.corPadrao = function(){
 		$scope.corFrame1 = "cor-padrao1";
 		$scope.corFrame2 = "cor-padrao2";
 		$scope.corFrame4 = "cor-padrao4";
+		$scope.corFrame5 = "cor-padrao5";
 	};
 
 	$scope.corSuave = function(){
 		$scope.corFrame1 = "cor-suave1";
 		$scope.corFrame2 = "cor-suave2";
 		$scope.corFrame4 = "cor-suave4";
+		$scope.corFrame5 = "cor-suave5";
 	};
 
 	$scope.corQuente = function(){
 		$scope.corFrame1 = "cor-quente1";
 		$scope.corFrame2 = "cor-quente2";
 		$scope.corFrame4 = "cor-quente4";
+		$scope.corFrame5 = "cor-quente5";
 	};
 
 
@@ -39,9 +44,28 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		$scope.framePrincipal = !$scope.framePrincipal;
 	};
 
-	$scope.limparCampos = function(value){
-		if(valueBoolean) return value;
-		return "";
+	$scope.ampliarLogo = function(){
+		$scope.proplusLogo = "proplus-dois";
+	};
+
+	$scope.reduzirLogo = function(){
+		$scope.proplusLogo = "proplus";
+	};
+
+	$scope.limparSeaWord = function(){
+		delete $scope.seaWord;
+	};
+
+	$scope.limparWordEnter = function(){
+		delete $scope.searchWord;
+	};
+
+	$scope.limparSearchText = function(){
+		delete $scope.searchText;
+	};
+
+	$scope.exibirResultado = function(){
+		console.log("pesquisar");
 	};
 
 	// Configuração de palavra

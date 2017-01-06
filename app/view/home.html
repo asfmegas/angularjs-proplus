@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="proplus">
-<head>
+<head ng-cloak>
 	<meta charset="UTF-8">
 	<title>HOME - Proplus English</title>
 	<link rel="stylesheet" href="../css/style.css">
@@ -8,8 +8,9 @@
 <body ng-controller="homeCtrl" ng-class="corFrame4">
 	<div id="interface">
 		<div id="cabecalho">
-			<div id="proplus">
+			<div ng-class="proplusLogo" ng-mouseup="ampliarLogo()" ng-mousedown="reduzirLogo()">
 				PROPLUS ENGLISH
+				<!-- <p class="texto-logo">Aprenda inglês com mais praticidade.</p> -->
 			</div>
 			<div id="menu" ng-class="corFrame1">
 				<button type="button" class="cor-padrao1 button1" ng-class="corFrame1" ng-disabled="visibilidadeTexto" ng-click="exibirTexto()">Consultar</button>
@@ -24,27 +25,27 @@
 
 			</div>
 			<audio ng-show="isVisibleAudio" controls>
-				<source src="../musics/the_power_of_the_dream.ogg" type="audio/ogg">
-				<!-- <source src="{{tituloMusica}}" type="audio/ogg"> -->
+				<source id="musica" src="../musics/the_power_of_the_dream.ogg" type="audio/ogg">
+				<!-- <source ng-src="{{tituloMusica}}" type="audio/ogg"> -->
 				Seus browser não suporta essa mídia.
 			</audio>
 			<!-- {{tituloMusica}} -->
 		</div>
 
-		<div id="pesquisa-texto" ng-class="corFrame1" ng-show="visibilidadeTexto">
+		<div id="pesquisa-texto" ng-class="corFrame1" ng-show="visibilidadeTexto" ng-cloak>
 			<div id="menu-texto" ng-class="corFrame1">
-				<input type="text" class="input-padrao" ng-class="corFrame2" ng-model="searchText" placeholder="Search">
+				<input type="text" class="input-padrao" ng-class="corFrame2" ng-focus="limparSearchText()" ng-model="searchText" placeholder="Search">
 				<select id="selecao-texto" ng-class="corFrame1" ng-model="searchType" ng-options="opcao.tipo for opcao in opcaoTexto">
 						<option value="">Selecione uma opção</option>
 					</select>
 				<button type="button" class="button1" ng-class="corFrame1" ng-click="exibirTexto()">Fechar</button>
 			</div>
-			<a href="#" class="link3 font-cor-padrao1" ng-repeat="texto in textos | filter:searchType.tipo | filter:searchText | orderBy:'titulo'">
+			<a href="#" class="link3 font-cor-padrao3" ng-repeat="texto in textos | filter:searchType.tipo | filter:searchText | orderBy:'titulo'">
 				<p class="cor-padrao3 selecao" ng-click="openText(texto)">{{texto.titulo}}</p>
 			</a>
 		</div>
 
-		<div id="pesquisa-palavras" ng-class="corFrame1" ng-show="visibilidadePalavras">
+		<div id="pesquisa-palavras" ng-class="corFrame1" ng-show="visibilidadePalavras" ng-cloak>
 			<form name="palavraForm">
 				<div id="radio-palavra" ng-class="corFrame1">
 					<label for="palavra">
@@ -61,26 +62,24 @@
 					<textarea class="textarea1 font-cor-padrao3 form-palavras" ng-class="corFrame1" ng-required="true" ng-value="wordEnter.nome" ng-model="wordEnter.nome" name="" id="" cols="30" rows="10"></textarea>
 					<textarea class="textarea1 font-cor-padrao3 form-palavras" ng-class="corFrame1" ng-required="true" ng-value="wordEnter.traducao" ng-model="wordEnter.traducao" name="" id="" cols="30" rows="10"></textarea>
 				</div>
-<!-- 			</form>
-			<form> -->
 				<div id="menu-palavras" ng-class="corFrame1">
 					<button type="button" class="button1" ng-class="corFrame1" ng-disabled="palavraForm.$invalid" ng-click="saveWord(wordEnter)">Salvar</button>
-					<button type="button" class="button1" ng-class="corFrame1"ng-disabled="palavraForm.$invalid"ng-click="alterarPalavra(wordEnter)">Alterar</button>
-					<button type="button" class="button1" ng-class="corFrame1" ng-disabled="palavraForm.$invalid" ng-click="removeWord(wordEnter._id)">Apagar</button>
+					<button type="button" class="button1" ng-class="corFrame1"ng-disabled="palavraForm.$invalid || !wordEnter._id" ng-click="alterarPalavra(wordEnter)">Alterar</button>
+					<button type="button" class="button1" ng-class="corFrame1" ng-disabled="palavraForm.$invalid || !wordEnter._id" ng-click="removeWord(wordEnter._id)">Apagar</button>
 					<button type="button" class="button1" ng-class="corFrame1" ng-click="newWord()">Limpar</button>
 					<button type="button" class="button1" ng-class="corFrame1" ng-click="exibirPalavras()">Fechar</button>
 				</div>
-				<input type="text" class="input-padrao input-palavras" ng-class="corFrame2" ng-model="searchWord" placeholder="Search">
-				<a class="link3 font-cor-padrao1" ng-repeat="palavra in palavras | filter:searchWord | orderBy:'nome'">
+				<input type="text" class="input-padrao input-palavras" ng-focus="limparWordEnter()" ng-class="corFrame2" ng-model="searchWord" placeholder="Search">
+				<a href="#" class="link3 font-cor-padrao3" ng-repeat="palavra in palavras | filter:searchWord | orderBy:'nome' | limitTo:50">
 					 <p class="cor-padrao3 selecao p-palavras" href="" ng-click="buscarUmaPalavra(palavra)">{{palavra.nome | uppercase}}</p>
 				</a>
 			</form>
 		</div>
 
-		<div id="principal" class="cor-padrao1" ng-show="framePrincipal">
+		<div id="principal" ng-class="corFrame1" ng-show="framePrincipal" ng-cloak>
 			<form name="principalForm">
 				<div id="menu-texto-dois" ng-class="corFrame1">
-					<input id="titulo-texto" type="text" ng-class="corFrame2" ng-required="true" ng-value="dadosTexto.titulo" ng-model="dadosTexto.titulo" placeholder="Título">
+					<input id="titulo-texto" autofocus="true" type="text" ng-class="corFrame2" ng-required="true" ng-value="dadosTexto.titulo" ng-model="dadosTexto.titulo" placeholder="Título">
 					<label class="radio-texto" ng-class="corFrame1" for="musica">Música<input type="radio" ng-model="dadosTexto.tipo" ng-required="true" name="musica" value="Música"></label>
 					<label class="radio-texto" ng-class="corFrame1" for="artigo">Artigo<input type="radio" ng-model="dadosTexto.tipo" ng-required="true" name="artigo" value="Artigo"></label>
 					<button type="button" class="button1" ng-class="corFrame1" ng-disabled="principalForm.$invalid" ng-click="saveText(dadosTexto)">Salvar</button>
@@ -88,11 +87,11 @@
 					<button type="button" class="button1" ng-class="corFrame1" ng-disabled="isValidButton" ng-click="removeText(dadosTexto._id)">Apagar</button>
 					<button type="button" class="button1" ng-class="corFrame1" ng-click="exibirTexto()">Pesquisar</button>
 				</div>
-				<textarea class="textarea1 font-cor-padrao3" ng-class="corFrame1" ng-required="true" font-cor-padrao3  name="texto" id="texto" cols="30" rows="10" ng-value="dadosTexto.texto" ng-model="dadosTexto.texto"></textarea>
+				<textarea class="textarea1 font-cor-padrao3 scroll-bar" ng-class="corFrame1" ng-required="true" font-cor-padrao3  name="texto" id="texto" cols="30" rows="10" ng-value="dadosTexto.texto" ng-model="dadosTexto.texto"></textarea>
 				<textarea class="textarea1 font-cor-padrao3" ng-class="corFrame1" ng-required="true" font-cor-padrao3  name="traducao" id="traducao" cols="30" rows="10" ng-value="dadosTexto.traducao" ng-model="dadosTexto.traducao"></textarea>
 			</form>
 		</div>
-		<div id="simples-salve" ng-class="corFrame1" ng-show="isVisibleSimple">
+		<div id="simples-salve" ng-class="corFrame1" ng-show="isVisibleSimple" ng-cloak>
 			<div>
 				<form name="simplesForm">
 					<input type="text" class="sim-input" ng-class="corFrame2" ng-model="simpleWord.nome" ng-required="true" placeholder="Word">
@@ -101,21 +100,21 @@
 				</form>
 			</div>
 		</div>
-		<div id="search-word" ng-class="corFrame1" ng-show="isVisibleSearch">
-			<textarea class="sea-word-area textarea1" ng-class="corFrame1" ng-value="seaOnlyWord" cols="30" rows="10"></textarea><br/>
-			<input type="text" class="sea-input" ng-class="corFrame2" ng-model="seaWord" placeholder="Search">
-			<a href="#" id="sea-word" ng-click="seaOneWord(palavra.traducao)" ng-repeat="palavra in palavras | filter:seaWord | orderBy:'nome' | limitTo:13">
-				<p id="sea-word-p" class="cor-padrao3">{{palavra.nome}}</p>
+		<div id="search-word" ng-class="corFrame1" ng-show="isVisibleSearch" ng-cloak>
+			<textarea class="sea-word-area textarea1 font-cor-padrao3" ng-class="corFrame5" ng-value="seaOnlyWord" cols="30" rows="10"></textarea><br/>
+			<input type="text" class="sea-input" ng-focus="limparSeaWord()" ng-class="corFrame2" ng-model="seaWord" placeholder="Search">
+			<a href="" id="sea-word" ng-click="seaOneWord(palavra.traducao)" ng-repeat="palavra in palavras | filter:seaWord | orderBy:'nome' | limitTo:13">
+				<p id="sea-word-p" class="cor-padrao3 font-cor-padrao3">{{palavra.nome}}</p>
 			</a>
 		</div>
 
-		<button type="button" class="sim-botao-exibir sim-botao-efeito" ng-show="buttonSimpleVisible" ng-click="ocultarExibirSimples()" ng-class="corFrame1">{{valueButton}}</button>
+		<button type="button" class="sim-botao-exibir sim-botao-efeito" ng-show="buttonSimpleVisible" ng-click="ocultarExibirSimples()" ng-class="corFrame1" ng-cloak>{{valueButton}}</button>
 
-		<button type="button" class="sea-botao-exibir sim-botao-efeito" ng-show="buttonSearchVisible" ng-class="corFrame1" ng-show="true" ng-click="ocultarExibirSearch()">{{valueButtonSearch}}</button>
-		
+		<button type="button" class="sea-botao-exibir sim-botao-efeito" ng-show="buttonSearchVisible" ng-class="corFrame1" ng-click="ocultarExibirSearch()" ng-cloak>{{valueButtonSearch}}</button>
+
 		<div id="rodape" ng-class="corFrame1">Alexsandro Façanha - asfsteel2012@gmail.com </div>
-	</div>
-	
+	</div>	
+
 	<script src="../lib/angular/angular.min.js"></script>
 	<script src="../lib/angular-route/angular-route.min.js"></script>
 	<script src="../js/app.js"></script>

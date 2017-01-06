@@ -6,7 +6,7 @@ body{
 
 /* Padrão Cores */
 .cor-padrao1{
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(140, 140, 140, 0.5);
 }
 
 .cor-padrao2{
@@ -22,7 +22,11 @@ body{
 }
 
 .cor-padrao4{ /* background do body */
-	background-color: #8c8c8c;
+	background-color: #000;
+}
+
+.cor-padrao5{
+	background-color: rgba(77, 77, 77, 0.8);
 }
 
 .cor-suave1{
@@ -37,8 +41,12 @@ body{
 	background-color: rgba(0, 0, 77, 1);
 }
 
+.cor-suave5{
+	background-color: rgba(0, 0, 179, 0.8);
+}
+
 .cor-quente1{
-	background-color: rgba(128, 26, 0, 0.6);
+	background-color: rgba(179, 60, 0, 0.6);
 }
 
 .cor-quente2{
@@ -46,7 +54,12 @@ body{
 }
 
 .cor-quente4{
-	background-color: rgba(179, 36, 0, 1);
+	// background-color: #000;
+	background-color: rgba(51, 17, 0, 1);
+}
+
+.cor-quente5{
+	background-color: rgba(230, 77, 0, 0.8);
 }
 
 /* Cores fontes */
@@ -132,6 +145,30 @@ audio{
 	padding: 10px;
 }
 
+/* ScrollBar */
+/* Largura da barra de rolagem */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fundo da barra de rolagem */
+::-webkit-scrollbar-track-piece {
+    background-color: #EEE;
+    border-left: 1px solid #CCC
+}
+
+/* Cor do indicador de rolagem */
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+    background-color: #BAC0C4
+}
+
+/* Cor do indicador de rolagem - ao passar o mouse */
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: #717171
+}
+
 /* Interface */
 div#cabecalho{
 	width: auto;
@@ -140,7 +177,7 @@ div#cabecalho{
 }
 
 /* Cabeçalho */
-div#proplus{
+.proplus{
 	position: fixed;
 	font-size: 28px;
 	font-weight: bold;
@@ -149,6 +186,19 @@ div#proplus{
 	text-shadow: 4px 4px 10px #fff;
 	word-spacing: 10px;
 	letter-spacing: 2px;
+	cursor: pointer;
+}
+
+.proplus-dois{
+	position: fixed;
+	font-size: 50px;
+	font-weight: bold;
+	top: 150px;
+	left: 440px;
+	text-shadow: 4px 4px 10px #fff;
+	word-spacing: 10px;
+	letter-spacing: 2px;
+	cursor: pointer;
 }
 
 /* Menu */
@@ -185,7 +235,7 @@ div#div-cores{
 /* Pesquisa Texto */
 div#pesquisa-texto{
 	width: 900px;
-	min-height: 1200px;
+	min-height: 630px;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 5px;
@@ -209,7 +259,7 @@ select#selecao-texto{
 /* Pesquisa de Palavras */
 div#pesquisa-palavras{
 	width: 900px;
-	min-height: 1200px;
+	min-height: 630px;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 5px;
