@@ -7,33 +7,75 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 	$scope.buttonSimpleVisible = false;
 	$scope.buttonSearchVisible = false;
 	$scope.proplusLogo = "proplus";
+	$scope.valorJanelaUnica = false;
+	let changeSearchRadio = true;
+	let conteudoTexto = {};
+	let alterarValor = true;
 	
 	$scope.corFrame1 = "cor-padrao1";
 	$scope.corFrame2 = "cor-padrao2";
+	$scope.corFrame3 = "cor-padrao3";
 	$scope.corFrame4 = "cor-padrao4";
 	$scope.corFrame5 = "cor-padrao5";
+	$scope.corFrame6 = "cor-padrao6";
+	$scope.corFrame7 = "cor-padrao7";
+	$scope.corFrame8 = "cor-padrao8";
+	$scope.corFrame9 = "cor-padrao9";
+
+	$scope.corFonte1 = "font-cor-padrao1";
+	$scope.corFonte2 = "font-cor-padrao2";
+	$scope.corFonte3 = "font-cor-padrao3";
+	$scope.corFonte4 = "font-cor-padrao4";
+
+	$scope.corAlertaAlteracao = "botao-cor-intacto";
 
 	$scope.corPadrao = function(){
 		$scope.corFrame1 = "cor-padrao1";
 		$scope.corFrame2 = "cor-padrao2";
+		$scope.corFrame3 = "cor-padrao3";
 		$scope.corFrame4 = "cor-padrao4";
 		$scope.corFrame5 = "cor-padrao5";
+		$scope.corFrame6 = "cor-padrao6";
+		$scope.corFrame7 = "cor-padrao7";
+		$scope.corFrame8 = "cor-padrao8";
+		$scope.corFrame9 = "cor-padrao9";
+		$scope.corFonte1 = "font-cor-padrao1";
+		$scope.corFonte2 = "font-cor-padrao2";
+		$scope.corFonte3 = "font-cor-padrao3";
+		$scope.corFonte4 = "font-cor-padrao4";
 	};
 
 	$scope.corSuave = function(){
 		$scope.corFrame1 = "cor-suave1";
 		$scope.corFrame2 = "cor-suave2";
+		$scope.corFrame3 = "cor-suave3";
 		$scope.corFrame4 = "cor-suave4";
 		$scope.corFrame5 = "cor-suave5";
+		$scope.corFrame6 = "cor-suave6";
+		$scope.corFrame7 = "cor-suave7";
+		$scope.corFrame8 = "cor-suave8";
+		$scope.corFrame9 = "cor-suave9";
+		$scope.corFonte1 = "font-cor-suave1";
+		$scope.corFonte2 = "font-cor-suave2";
+		$scope.corFonte3 = "font-cor-suave3";
+		$scope.corFonte4 = "font-cor-suave4";
 	};
 
 	$scope.corQuente = function(){
 		$scope.corFrame1 = "cor-quente1";
 		$scope.corFrame2 = "cor-quente2";
+		$scope.corFrame3 = "cor-quente3";
 		$scope.corFrame4 = "cor-quente4";
 		$scope.corFrame5 = "cor-quente5";
+		$scope.corFrame6 = "cor-quente6";
+		$scope.corFrame7 = "cor-quente7";
+		$scope.corFrame8 = "cor-quente8";
+		$scope.corFrame9 = "cor-quente9";
+		$scope.corFonte1 = "font-cor-quente1";
+		$scope.corFonte2 = "font-cor-quente2";
+		$scope.corFonte3 = "font-cor-quente3";
+		$scope.corFonte4 = "font-cor-quente4";
 	};
-
 
 	$scope.exibirPrincipal = function(){
 		$scope.buttonSimpleVisible = false;
@@ -90,6 +132,16 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		};
 	};
 
+	$scope.exibirOcultarJanelaUnica = function(value,dados){
+		if(value){
+			$scope.valorJanelaUnica = value;
+			$scope.janelaUnica = dados;
+		}else{
+			delete $scope.janelaUnica;
+			$scope.valorJanelaUnica = value;
+		};
+	};
+
 	let ocultarSimples = function(){
 		$scope.isVisibleSimple = false;
 		if($scope.isVisibleSimple){
@@ -99,8 +151,12 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		};
 	};
 
-	$scope.ocultarExibirSearch = function(){
-		$scope.isVisibleSearch = !$scope.isVisibleSearch;
+	$scope.ocultarExibirSearch = function(value){
+		if(!value){
+			$scope.isVisibleSearch = value;
+		}else{
+			$scope.isVisibleSearch = !$scope.isVisibleSearch;
+		};
 		carregarPalavras();
 		if($scope.isVisibleSearch){
 			$scope.valueButtonSearch = ">>";
@@ -129,8 +185,25 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 
 	let carregarPalavras = function(){
 		getListWords(function(result){
-			$scope.palavras = result;
+			if(changeSearchRadio){
+				$scope.palavras = result;
+				$scope.corEspecial = "cor-change-search-disable";
+			}else{
+				$scope.corEspecial = "cor-change-search-enable";
+				$scope.palavras = result.map(function(elemento){
+					return {
+						nome:elemento.nome,
+						traducao: elemento.traducao,
+						tipo: elemento.tipo
+					}
+				});
+			};
 		});
+	};
+
+	$scope.changeSearch = function(){
+		changeSearchRadio = !changeSearchRadio;
+		carregarPalavras();
 	};
 
 	$scope.buscarUmaPalavra = function(dados){
@@ -188,7 +261,8 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 
 	$scope.newWord = function(){
 		delete $scope.wordEnter;
-	}
+		delete $scope.typeGroup;
+	};	
 
 	// Configuração de texto
 	$scope.exibirTexto = function(){
@@ -259,6 +333,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 			buscarTextos();
 			delete $scope.dadosTexto;
 			carregarConsulta();
+			$scope.corAlertaAlteracao = "cor-botao-intacto";
 		});
 	};
 
@@ -277,6 +352,8 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 			alert("Dados salvos com sucesso!");
 			buscarTextos();
 			delete $scope.dados;
+			$scope.corAlertaAlteracao = "cor-botao-intacto";
+			alterarValor = true;
 		},function(error){
 			console.log(error);
 		});
@@ -294,6 +371,8 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		httpAPI.alterarText(novosDados).then(function(result){
 			alert('Dados alterados com sucesso!');
 			buscarTextos();
+			$scope.corAlertaAlteracao = "cor-botao-intacto";
+			alterarValor = true;
 		},function(error){
 			console.log(error);
 		});
@@ -312,17 +391,40 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 	};
 
 	$scope.ocultarJanela = function(){
-		console.log("janela");
 		$scope.windowWord = !$scope.windowWord;
 	};
 
 	$scope.openText = function(dados){
-		$scope.buttonSimpleVisible = true;
+		alterarValor = true;
+		$scope.corAlertaAlteracao = "botao-cor-intacto";
+		$scope.buttonSimpleVisible = true;	
 		$scope.buttonSearchVisible = true;
 		ativarBotoes(false);
 		carregarTexto();
 		carregarMusica(dados.titulo);
 		$scope.dadosTexto = dados;
+	};
+
+	$scope.verificarAlteracoes = function(dados){
+		if(alterarValor){
+			conteudoTexto = angular.copy(dados);	
+			alterarValor = false;
+		};
+		
+		if(dados){
+			if(dados.titulo !== conteudoTexto.titulo){
+				$scope.corAlertaAlteracao = "botao-cor-alterado";
+			};
+			if(dados.texto !== conteudoTexto.texto){
+				$scope.corAlertaAlteracao = "botao-cor-alterado";
+			};
+			if(dados.traducao !== conteudoTexto.traducao){
+				$scope.corAlertaAlteracao = "botao-cor-alterado";
+			};
+			if(dados.tipo !== conteudoTexto.tipo){
+				$scope.corAlertaAlteracao = "botao-cor-alterado";
+			};
+		};
 	};
 
 	let carregarMusica = function(musica){

@@ -1,0 +1,208 @@
+/* Padrão Cores */
+/* Pradao fundo */
+.cor-padrao1{ /* Cor de fundoprincipal - primeira camada*/
+	background-color: rgba(0, 0, 0, 1);
+}
+
+.cor-padrao2{ /* Cor de fundo secundária - segunda camada*/
+	background-color: rgba(38, 38, 38, 0.6);
+}
+
+.cor-padrao3{ /* Cor de fundo terciária - terceira camada */
+	background-color: rgba(115, 115, 115, 0.4);
+}
+
+.cor-padrao4{ /* Cor para botoes */
+	background-color: rgba(179, 179, 179, 0.6);
+}
+
+.cor-padrao4:hover{ /* Cor para botoes */
+	background-color: rgba(179, 179, 179, 1);
+}
+
+.cor-padrao5{ /* Cor para textarea */
+	background-color: rgba(153, 153, 153, 0.8);
+}
+
+.cor-padrao6{ /* Cor para inputs */
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.cor-padrao7{ /* Cor select e radio */
+	background-color: rgba(204, 204, 204, 0.6);
+}
+
+.cor-padrao8{ /* Fundo com hover */
+	background-color: rgba(115, 115, 115, 0.4);
+}
+
+.cor-padrao8:hover{ /* Fundo com hover */
+	background-color: rgba(115, 115, 115, 0.8);
+}
+
+.cor-padrao9{ /* não usado */
+	background-color: rgba(77, 77, 77, 0.8);
+}
+
+
+/* Suave fundo */
+.cor-suave1{
+	background-color: rgba(0, 0, 0, 1);
+}
+
+.cor-suave2{
+	background-color: rgba(0, 0, 102, 0.6);
+}
+
+.cor-suave3{
+	background-color: rgba(0, 0, 128, 0.6);
+}
+
+.cor-suave4{
+	background-color: rgba(0, 0, 204, 0.6);
+}
+
+.cor-suave4:hover{
+	background-color: rgba(0, 0, 204, 1);
+}
+
+.cor-suave5{
+	background-color: rgba(0, 0, 102, 0.8);
+}
+
+.cor-suave6{
+	background-color: rgba(0, 0, 77, 0.8);
+}
+
+.cor-suave7{
+	background-color: rgba(0, 0, 179, 0.8);
+}
+
+.cor-suave8{
+	background-color: rgba(0, 0, 179, 0.4);
+}
+
+.cor-suave8:hover{
+	background-color: rgba(0, 0, 179, 0.8);
+}
+
+.cor-suave9{
+	background-color: rgba(0, 0, 179, 0.8);
+}
+
+
+/* Qunete fundo */
+.cor-quente1{
+	background-color: rgba(0, 0, 0, 1);
+}
+
+.cor-quente2{
+	background-color: rgba(102, 20, 0, 0.8);
+}
+
+.cor-quente3{
+	background-color: rgba(230, 77, 0, 0.8);
+}
+
+.cor-quente4{
+	background-color: rgba(179, 60, 0, 0.2);
+}
+
+.cor-quente4:hover{
+	background-color: rgba(179, 60, 0, 0.8);
+}
+
+.cor-quente5{
+	background-color: rgba(230, 77, 0, 0.8);
+}
+
+.cor-quente6{
+	background-color: rgba(230, 77, 0, 0.8);
+}
+
+.cor-quente7{
+	background-color: rgba(230, 77, 0, 0.8);
+}
+
+.cor-quente8{
+	background-color: rgba(204, 68, 0, 0.4);
+}
+
+.cor-quente8:hover{
+	background-color: rgba(204, 68, 0, 0.8);
+}
+
+.cor-quente9{
+	background-color: rgba(230, 77, 0, 0.8);
+}
+
+/* Cor especial para botão */
+.botao-cor-intacto{
+	background-color: rgba(179, 179, 179, 0.6);
+}
+
+.botao-cor-intacto:hover{
+	background-color: rgba(179, 179, 179, 1);
+}
+
+.botao-cor-alterado{
+	background-color: rgba(255, 0, 0, 0.7);
+}
+
+.botao-cor-alterado:hover{
+	background-color: rgba(255, 0, 0, 1);
+}
+
+/* Cor fonte padrão */
+.font-cor-padrao1{ /* Geral */
+	color: rgb(0, 0, 0);
+}
+
+.font-cor-padrao2{ /* Botões */
+	color: #fff;
+}
+
+.font-cor-padrao3{ /* textarea */
+	color: #000;
+}
+
+.font-cor-padrao4{ /* radio */
+	color: rgba(0, 0, 0, 1);
+	text-shadow: 0px 0px 10px #fff;
+}
+
+/* Cor fonte suave */
+.font-cor-suave1{ /* Geral */
+	color: rgb(0, 0, 0);
+}
+
+.font-cor-suave2{ /* Botões */
+	color: rgb(255, 255, 255);
+}
+
+.font-cor-suave3{ /* textarea */
+	color: rgb(204, 204, 255);
+}
+
+.font-cor-suave4{ /* radio */
+	color: rgba(0, 0, 0, 1);
+	text-shadow: 0px 0px 10px #fff;
+}
+
+/* Cor fonte quente */
+.font-cor-quente1{ /* Geral */
+	color: rgb(0, 0, 0);
+}
+
+.font-cor-quente2{ /* Botões */
+	color: rgb(255, 255, 255);
+}
+
+.font-cor-quente3{ /* textarea */
+	color: #fff;
+}
+
+.font-cor-quente4{ /* radio */
+	color: rgba(0, 0, 0, 1);
+	text-shadow: 0px 0px 10px #fff;
+}

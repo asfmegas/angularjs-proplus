@@ -7,6 +7,3 @@ Conteúdo de estudo totalmente personalizado, já que é o usuário que adiciona
 É possível criar um banco de dados para palavras e outro para textos, tudo determinado pelo usuário de acordo com sua necessidade.
 
 Prático e dinâmico.
-
-
-

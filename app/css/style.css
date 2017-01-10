@@ -4,81 +4,6 @@ body{
 	font-family: "Times New Roman", Times, serif;
 }
 
-/* Padrão Cores */
-.cor-padrao1{
-	background-color: rgba(140, 140, 140, 0.5);
-}
-
-.cor-padrao2{
-	background-color: rgba(0, 0, 0, 1);
-}
-
-.cor-padrao3{
-	background-color: rgba(0, 0, 0, 0.2);
-}
-
-.cor-padrao3:hover{
-	background-color: rgba(245, 245, 240, 0.2);
-}
-
-.cor-padrao4{ /* background do body */
-	background-color: #000;
-}
-
-.cor-padrao5{
-	background-color: rgba(77, 77, 77, 0.8);
-}
-
-.cor-suave1{
-	background-color: rgba(102, 102, 255, 0.6);
-}
-
-.cor-suave2{
-	background-color: rgba(0, 0, 77, 0.6);
-}
-
-.cor-suave4{
-	background-color: rgba(0, 0, 77, 1);
-}
-
-.cor-suave5{
-	background-color: rgba(0, 0, 179, 0.8);
-}
-
-.cor-quente1{
-	background-color: rgba(179, 60, 0, 0.6);
-}
-
-.cor-quente2{
-	background-color: rgba(102, 20, 0, 0.8);
-}
-
-.cor-quente4{
-	// background-color: #000;
-	background-color: rgba(51, 17, 0, 1);
-}
-
-.cor-quente5{
-	background-color: rgba(230, 77, 0, 0.8);
-}
-
-/* Cores fontes */
-.font-cor-padrao1{
-	color: #000;
-}
-
-.font-cor-padrao2{
-	color: #000;
-}
-
-.font-cor-padrao2:hover{
-	color: #ccc;
-}
-
-.font-cor-padrao3{
-	color: #fff;
-}
-
 /* Formatação audio */
 audio{
 	position: fixed;
@@ -154,19 +79,19 @@ audio{
 /* Fundo da barra de rolagem */
 ::-webkit-scrollbar-track-piece {
     background-color: #EEE;
-    border-left: 1px solid #CCC
+    border-left: 1px solid #CCC;
 }
 
 /* Cor do indicador de rolagem */
 ::-webkit-scrollbar-thumb:vertical,
 ::-webkit-scrollbar-thumb:horizontal {
-    background-color: #BAC0C4
+    background-color: rgba(38, 38, 38, 0.4);
 }
 
 /* Cor do indicador de rolagem - ao passar o mouse */
 ::-webkit-scrollbar-thumb:vertical:hover,
 ::-webkit-scrollbar-thumb:horizontal:hover {
-    background-color: #717171
+    background-color: rgba(38, 38, 38, 0.8);
 }
 
 /* Interface */
@@ -208,7 +133,7 @@ div#menu{
 	height: 30px;
 	border-radius: 0px 0px 0px 20px;
 	left: 330px;
-	padding: 10px 10px 10px 20px; //cima baixo direita esquerda
+	padding: 10px 10px 10px 20px;
 }
 
 .botao-cor{
@@ -229,7 +154,6 @@ div#div-cores{
 	position: fixed;
 	top: 10px;
 	left: 850px;
-	// background-color: black;
 }
 
 /* Pesquisa Texto */
@@ -254,6 +178,11 @@ select#selecao-texto{
 	margin-bottom: 10px;
 	width: 200px;
 	border: 0px;
+}
+
+.form-data{
+	font-size: 14px;
+	color: #ccc;
 }
 
 /* Pesquisa de Palavras */
@@ -291,6 +220,18 @@ div#menu-palavras{
 	margin: 0px;
 	display: inline;
 	background-color: black;
+}
+
+div#radio-palavra-infer{
+	width: 260px;
+	height: 20px;
+	padding: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-top: 7px;
+	margin-left: 310px;
+	margin-bottom: 3px;
 }
 
 div#radio-palavra{
@@ -339,6 +280,69 @@ input#titulo-texto{
 	padding: 5px;
 	border-radius: 3px;
 	font-weight: bold;
+}
+
+.button-janela{
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 0px #000;
+	padding: 2px;
+	width: 60px;
+	border-radius: 3px;
+	border: 0px;
+	cursor: pointer;
+	margin-left: 10px;
+	box-shadow: 0px 0px 0px #000;
+	transition: box-shadow 0.6s;
+}
+
+.button-janela:hover{
+	box-shadow: -5px -5px 5px #000;
+}
+
+/* Janela única */
+div#janela-unica{
+	position: fixed;
+	width: 1000px;
+	min-height: 700px;
+	border-radius: 5px;
+	padding: 20px;
+	left: 160px;
+	top: 10px;
+}
+
+div#janela-unica textarea{
+	font-size: 24px;
+	font-weight: bold;
+	color: #000;
+	margin-left: 40px;
+	width: 900px;
+	height: 660px;
+	border-radius: 10px;
+}
+
+div#botao-janela-unica{
+	width: 130px;
+	margin-left: 800px;
+}
+
+div#botao-janela-unica button{
+	margin-left: 60px;
+	margin-bottom: 0px;
+	border-radius: 5px;
+	font-size: 18px;
+	font-weight: bold;
+	border: 0px;
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px #000;
+	transition: box-shadow 0.6s;
+}
+
+div#botao-janela-unica button:hover{
+	box-shadow: 5px 5px 10px #000;
 }
 
 /* Simples salve - uma frame para ser visualizada sobre
@@ -454,13 +458,41 @@ p#sea-word-p{
 	cursor: pointer;
 }
 
+.sea-botao-enable{
+	position: fixed;
+	left: 1300px;
+	top: 240px;
+	border-radius: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	border: 0px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.cor-change-search-enable{
+	background-color: rgba(0, 77, 0, 0.4);
+}
+
+.cor-change-search-disable{
+	background-color: rgba(153, 0, 0, 0.4);
+}
+
 /* Rodapé */
 div#rodape{
 	padding-top: 5px;
+	color: rgb(77, 77, 77);
 	text-align: center;
 	font-size: 18px;
 	font-weight: bold;
 	margin-top: 10px;
 	width: auto;
 	height: 35px;
+	transition: color 0.6s;
 }
+
+div#rodape:hover{
+	color: rgb(255, 255, 255);
+}
+
