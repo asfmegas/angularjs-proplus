@@ -45,7 +45,7 @@ exports.updateText = (dados,callback) => {
 		if(content.texto) content.texto = dados.texto;
 		if(content.traducao) content.traducao = dados.traducao;
 		if(content.tipo) content.tipo = dados.tipo;
-		content.createAt = new Date();
+		content.modifiedAt = new Date();
 		content.save(function(error,result){
 			if(error) callback(error);
 			callback(result);

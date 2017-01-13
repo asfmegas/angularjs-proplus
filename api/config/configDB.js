@@ -17,7 +17,8 @@ db.once('open',function(){
 		traducao:String,
 		tipo: String,
 		origem: String,
-		createAt:Date
+		createAt:Date,
+		modifiedAt: Date
 	});
 
 	let contentSchema = mongoose.Schema({
@@ -25,7 +26,8 @@ db.once('open',function(){
 		texto:String,
 		tipo: String,
 		traducao:String,
-		createAt:Date
+		createAt:Date,
+		modifiedAt: Date
 	});
 
 	exports.Words = mongoose.model('Words',wordSchema);

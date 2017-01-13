@@ -106,30 +106,29 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		delete $scope.searchText;
 	};
 
-	$scope.exibirResultado = function(){
-		console.log("pesquisar");
-	};
-
 	// Configuração de palavra
 	$scope.exibirPalavras = function(){
 		carregarPalavras();
 		$scope.buttonSimpleVisible = false;
 		$scope.buttonSearchVisible = false;
-		ocultarSimples();
-		ocultarExibirSearch();
 		$scope.framePrincipal = false;
 		$scope.visibilidadeTexto = false;
 		$scope.isVisibleAudio = false;
 		$scope.visibilidadePalavras = !$scope.visibilidadePalavras;
+		ocultarSimples();
+		ocultarExibirSearch();
 	};
 
 	$scope.ocultarExibirSimples = function(){
 		$scope.isVisibleSimple = !$scope.isVisibleSimple;
-		if($scope.isVisibleSimple){
-			$scope.valueButton = ">>";
-		}else{
-			$scope.valueButton = "<<";
-		};
+		// if($scope.isVisibleSimple){
+		// 	$scope.valueButton = ">>";
+		// }else{
+		// 	$scope.valueButton = "<<";
+		// };
+		getSymbol($scope.isVisibleSimple, function(result){
+			$scope.valueButton = result;
+		});
 	};
 
 	$scope.exibirOcultarJanelaUnica = function(value,dados){
@@ -144,11 +143,14 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 
 	let ocultarSimples = function(){
 		$scope.isVisibleSimple = false;
-		if($scope.isVisibleSimple){
-			$scope.valueButton = ">>";
-		}else{
-			$scope.valueButton = "<<";
-		};
+		// if($scope.isVisibleSimple){
+		// 	$scope.valueButton = ">>";
+		// }else{
+		// 	$scope.valueButton = "<<";
+		// };
+		getSymbol($scope.isVisibleSimple,function(result){
+			$scope.valueButton = result;
+		});
 	};
 
 	$scope.ocultarExibirSearch = function(value){
@@ -157,21 +159,35 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		}else{
 			$scope.isVisibleSearch = !$scope.isVisibleSearch;
 		};
-		carregarPalavras();
-		if($scope.isVisibleSearch){
-			$scope.valueButtonSearch = ">>";
-		}else{
-			$scope.valueButtonSearch = "<<";
-		};
+		if($scope.isVisibleSearch) carregarPalavras();
+		getSymbol($scope.isVisibleSearch,function(result){
+			$scope.valueButtonSearch = result;
+		});
+		// if($scope.isVisibleSearch){
+		// 	$scope.valueButtonSearch = ">>";
+		// }else{
+		// 	$scope.valueButtonSearch = "<<";
+		// };
 	};
 
 	let ocultarExibirSearch = function(){
 		$scope.isVisibleSearch = false;
-		if($scope.isVisibleSearch){
-			$scope.valueButtonSearch = ">>";
-		}else{
-			$scope.valueButtonSearch = "<<";
-		};
+		// if($scope.isVisibleSearch){
+		// 	$scope.valueButtonSearch = ">>";
+		// }else{
+		// 	$scope.valueButtonSearch = "<<";
+		// };
+		getSymbol($scope.isVisibleSearch, function(result){
+			$scope.valueButtonSearch = result;
+		});
+	};
+
+	/* 
+		Função que altera o símbolo dos botões laterais
+	*/
+	let getSymbol = function(value, callback){
+		if(value) return callback(">>");
+		return callback("<<");
 	};
 
 		// Obter lista das palavras
@@ -183,15 +199,22 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		});
 	};
 
+	$scope.buscarUmaPalavra = function(dados){
+		$scope.wordEnter = angular.copy(dados);
+		delete dados;
+	};
+
 	let carregarPalavras = function(){
 		getListWords(function(result){
 			if(changeSearchRadio){
 				$scope.palavras = result;
+				console.log("Quantidade de palavras: "+result.length);
 				$scope.corEspecial = "cor-change-search-disable";
 			}else{
 				$scope.corEspecial = "cor-change-search-enable";
 				$scope.palavras = result.map(function(elemento){
 					return {
+						_id: elemento._id,
 						nome:elemento.nome,
 						traducao: elemento.traducao,
 						tipo: elemento.tipo
@@ -204,11 +227,6 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 	$scope.changeSearch = function(){
 		changeSearchRadio = !changeSearchRadio;
 		carregarPalavras();
-	};
-
-	$scope.buscarUmaPalavra = function(dados){
-		$scope.wordEnter = angular.copy(dados);
-		delete dados;
 	};
 
 	$scope.saveWord = function(dados){
@@ -225,6 +243,9 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 	$scope.saveWordSimple = function(dados,origem){
 		dados.tipo = "Palavra";
 		dados.origem = origem;
+		dados.nome = dados.nome.toLowerCase();
+		dados.traducao = dados.traducao.toLowerCase();
+
 		httpAPI.saveWord(dados).then(function(result){
 			delete $scope.simpleWord;
 		},function(error){
@@ -233,9 +254,8 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 	};
 
 	$scope.removeWord = function(id){
-		console.log(id);
 		httpAPI.removeWord(id).then(function(result){
-			alert("Dados removido com sucesso!");
+			alert("Dados removidos com sucesso!");
 			delete $scope.wordEnter;
 			carregarPalavras();
 		},function(error){
@@ -309,7 +329,9 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		$scope.visibilidadeTexto = !$scope.visibilidadeTexto;
 	};
 
-	// Obter lista dos textos
+	/*
+		Obtem os dados texto do banco
+	*/
 	let getListContents = function(callback){
 		httpAPI.getContents().then(function(result){
 			callback(result.data);
@@ -318,15 +340,30 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		});
 	};
 
-	// Obter apenas um texto
-	let getOneContent = function(param,callback){
-		httpAPI.getOneContent(param).then(function(result){
-			callback(result.data);
-		},function(error){
-			console.log(error);
+	/*
+		Função desnecessário que atua chamando a função getListContents
+		e levar os dados ao scope para exibição
+	*/
+	var buscarTextos = function(){
+		getListContents(function(result){
+			$scope.textos = result;
+			console.log("Qunatidade de textos: "+result.length);
 		});
 	};
 
+	// Obter apenas um texto
+	// let getOneContent = function(param,callback){
+	// 	httpAPI.getOneContent(param).then(function(result){
+	// 		callback(result.data);
+	// 	},function(error){
+	// 		console.log(error);
+	// 	});
+	// };
+
+
+	/*
+		Remove dados do banco de dados texto
+	*/
 	$scope.removeText = function(id){
 		httpAPI.removeText(id).then(function(result){
 			alert("Dados apagados com sucesso!");
@@ -337,6 +374,10 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		});
 	};
 
+
+	/*
+		Armazena os dados no banco de dados texto
+	*/
 	$scope.saveText = function(dados,novosDados){
 		if(!novosDados){
 			novosDados = dados;
@@ -352,13 +393,16 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 			alert("Dados salvos com sucesso!");
 			buscarTextos();
 			delete $scope.dados;
-			$scope.corAlertaAlteracao = "cor-botao-intacto";
 			alterarValor = true;
+			$scope.corAlertaAlteracao = "cor-botao-intacto";
 		},function(error){
 			console.log(error);
 		});
 	}
 
+	/*
+		Realiza alterações no banco dos dados texto
+	*/
 	$scope.alterarText = function(dados,novosDados){
 		if(!novosDados){
 			novosDados = dados;
@@ -371,22 +415,10 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		httpAPI.alterarText(novosDados).then(function(result){
 			alert('Dados alterados com sucesso!');
 			buscarTextos();
-			$scope.corAlertaAlteracao = "cor-botao-intacto";
 			alterarValor = true;
+			$scope.corAlertaAlteracao = "cor-botao-intacto";
 		},function(error){
 			console.log(error);
-		});
-	};
-
-	var buscarTextos = function(){
-		getListContents(function(result){
-			$scope.textos = result;
-		});
-	};
-
-	$scope.buscarUmTexto = function(id){
-		getOneContent(id,function(result){
-			$scope.textoSelecionado = result;
 		});
 	};
 
@@ -401,34 +433,47 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		$scope.buttonSearchVisible = true;
 		ativarBotoes(false);
 		carregarTexto();
-		carregarMusica(dados.titulo);
 		$scope.dadosTexto = dados;
 	};
 
+	/*
+		Verificar se houve alterações no documento texto. Caso ocorrida alguma alteração
+		é trocada a class da barra de botões tornando-a vermelha.
+	*/
 	$scope.verificarAlteracoes = function(dados){
+		let copiaDados = angular.copy(dados);
+		/*
+			Teste que verifica a necessidade de renovar o valor da variável conteudoTexto
+			isso ocorre quando é salvo a alteração e é precico atualizar o valor desse objeto
+			para que volte a se igualar com os dados exibidos
+		*/
 		if(alterarValor){
+			// Guarda o valor inicial dos dados obtidos do banco
 			conteudoTexto = angular.copy(dados);	
 			alterarValor = false;
 		};
 		
-		if(dados){
-			if(dados.titulo !== conteudoTexto.titulo){
-				$scope.corAlertaAlteracao = "botao-cor-alterado";
-			};
-			if(dados.texto !== conteudoTexto.texto){
-				$scope.corAlertaAlteracao = "botao-cor-alterado";
-			};
-			if(dados.traducao !== conteudoTexto.traducao){
-				$scope.corAlertaAlteracao = "botao-cor-alterado";
-			};
-			if(dados.tipo !== conteudoTexto.tipo){
-				$scope.corAlertaAlteracao = "botao-cor-alterado";
+		/*
+			O primeiro if verifica se o objeto não é undefined.
+			O segundo if verifica se o objeto possui um id.
+			O terceiro if verifica se ocorreu alguma alteração entre os dados do banco e os exibidos
+		*/
+		if(copiaDados){
+			if(copiaDados._id){
+				if(copiaDados.titulo !== conteudoTexto.titulo){
+					$scope.corAlertaAlteracao = "botao-cor-alterado";
+				};
+				if(copiaDados.texto !== conteudoTexto.texto){
+					$scope.corAlertaAlteracao = "botao-cor-alterado";
+				};
+				if(copiaDados.traducao !== conteudoTexto.traducao){
+					$scope.corAlertaAlteracao = "botao-cor-alterado";
+				};
+				if(copiaDados.tipo !== conteudoTexto.tipo){
+					$scope.corAlertaAlteracao = "botao-cor-alterado";
+				};
 			};
 		};
-	};
-
-	let carregarMusica = function(musica){
-		$scope.tituloMusica = "../musics/"+musica.toLowerCase().replace(/ /g,"_")+".ogg";
 	};
 
 	let ativarBotoes = function(value){

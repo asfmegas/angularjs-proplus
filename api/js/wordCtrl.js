@@ -46,7 +46,7 @@ exports.updateWord = (dados,callback) => {
 			if(word.traducao) word.traducao = dados.traducao;
 			if(word.tipo) word.tipo = dados.tipo;
 			word.origem = dados.origem;
-			word.createAt = new Date();
+			word.modifiedAt = new Date();
 			word.save(function(error,result){
 				if(error){
 					callback({error:'Não foi possível atualizar dados.'});

@@ -141,17 +141,17 @@
 	background-color: rgba(179, 179, 179, 0.6);
 }
 
-.botao-cor-intacto:hover{
-	background-color: rgba(179, 179, 179, 1);
-}
+// .botao-cor-intacto:hover{
+// 	background-color: rgba(179, 179, 179, 1);
+// }
 
 .botao-cor-alterado{
-	background-color: rgba(255, 0, 0, 0.7);
+	background-color: rgba(255, 0, 0, 0.5);
 }
 
-.botao-cor-alterado:hover{
-	background-color: rgba(255, 0, 0, 1);
-}
+// .botao-cor-alterado:hover{
+// 	background-color: rgba(255, 0, 0, 1);
+// }
 
 /* Cor fonte padrão */
 .font-cor-padrao1{ /* Geral */
