@@ -1,4 +1,4 @@
-angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
+angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakText){
 	$scope.opcaoTexto = [
 		{tipo:"Música"},
 		{tipo:"Artigo"}];
@@ -7,6 +7,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 	$scope.buttonSimpleVisible = false;
 	$scope.buttonSearchVisible = false;
 	$scope.proplusLogo = "proplus";
+	$scope.valueBtnOnlyWords = "Text";
 	$scope.valorJanelaUnica = false;
 	let changeSearchRadio = true;
 	let conteudoTexto = {};
@@ -121,11 +122,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 
 	$scope.ocultarExibirSimples = function(){
 		$scope.isVisibleSimple = !$scope.isVisibleSimple;
-		// if($scope.isVisibleSimple){
-		// 	$scope.valueButton = ">>";
-		// }else{
-		// 	$scope.valueButton = "<<";
-		// };
+		if(!$scope.isVisibleSimple) delete $scope.simpleWord;
 		getSymbol($scope.isVisibleSimple, function(result){
 			$scope.valueButton = result;
 		});
@@ -143,11 +140,6 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 
 	let ocultarSimples = function(){
 		$scope.isVisibleSimple = false;
-		// if($scope.isVisibleSimple){
-		// 	$scope.valueButton = ">>";
-		// }else{
-		// 	$scope.valueButton = "<<";
-		// };
 		getSymbol($scope.isVisibleSimple,function(result){
 			$scope.valueButton = result;
 		});
@@ -158,25 +150,17 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 			$scope.isVisibleSearch = value;
 		}else{
 			$scope.isVisibleSearch = !$scope.isVisibleSearch;
+			delete $scope.seaWord;
 		};
 		if($scope.isVisibleSearch) carregarPalavras();
 		getSymbol($scope.isVisibleSearch,function(result){
 			$scope.valueButtonSearch = result;
 		});
-		// if($scope.isVisibleSearch){
-		// 	$scope.valueButtonSearch = ">>";
-		// }else{
-		// 	$scope.valueButtonSearch = "<<";
-		// };
 	};
 
 	let ocultarExibirSearch = function(){
 		$scope.isVisibleSearch = false;
-		// if($scope.isVisibleSearch){
-		// 	$scope.valueButtonSearch = ">>";
-		// }else{
-		// 	$scope.valueButtonSearch = "<<";
-		// };
+		delete $scope.seaWord;
 		getSymbol($scope.isVisibleSearch, function(result){
 			$scope.valueButtonSearch = result;
 		});
@@ -351,16 +335,6 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		});
 	};
 
-	// Obter apenas um texto
-	// let getOneContent = function(param,callback){
-	// 	httpAPI.getOneContent(param).then(function(result){
-	// 		callback(result.data);
-	// 	},function(error){
-	// 		console.log(error);
-	// 	});
-	// };
-
-
 	/*
 		Remove dados do banco de dados texto
 	*/
@@ -433,6 +407,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 		$scope.buttonSearchVisible = true;
 		ativarBotoes(false);
 		carregarTexto();
+		if($scope.onlyWords) dados.texto = breakText.getBreakText(dados.texto);
 		$scope.dadosTexto = dados;
 	};
 
@@ -482,6 +457,15 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI){
 
 	$scope.seaOneWord = function(traducao){
 		$scope.seaOnlyWord = traducao;
+	};
+
+	$scope.btnOnlyWordsFn = function(){
+		$scope.onlyWords = !$scope.onlyWords;
+		if($scope.onlyWords){
+			$scope.valueBtnOnlyWords = "Only Words";
+		}else{
+			$scope.valueBtnOnlyWords = "Text";
+		};
 	};
 
 });

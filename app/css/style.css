@@ -185,6 +185,21 @@ select#selecao-texto{
 	color: #ccc;
 }
 
+.btnOnlyButton{
+	position: fixed;
+	left: 1160px;
+	top: 10px;
+	width: 120px;
+	height: 30px;
+	border-radius: 3px;
+	border: 0px;
+	cursor: pointer;
+	color: #fff;
+	text-shadow: 1px 1px 2px #000;
+	font-size: 18px;
+	font-weight: bold;
+}
+
 /* Pesquisa de Palavras */
 div#pesquisa-palavras{
 	width: 900px;
