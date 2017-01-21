@@ -34,3 +34,27 @@ exports.updateWord = (req,res) => {
 		res.json(result);
 	});
 };
+
+/*
+	Verbs irregular
+*/
+
+exports.getVerbs = function(req, res){
+	words.getVerbs(function(result){
+		res.json(result);
+	});
+};
+
+exports.saveVerb = function(req,res){
+	let dados = req.body;
+	words.saveVerb(dados,function(result){
+		res.json(result);
+	});
+};
+
+exports.updateVerb = function(req,res){
+	let dados = req.body;
+	words.updateVerb(dados,function(result){
+		res.json(result);
+	});
+};

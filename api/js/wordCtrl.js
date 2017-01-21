@@ -57,3 +57,38 @@ exports.updateWord = (dados,callback) => {
 		};
 	});
 };
+
+/*
+	Verbs
+*/
+exports.getVerbs = function(callback){
+	db.Verbs.find({},function(err,result){
+		if(err) callback(err);
+		callback(result);
+	});
+};
+
+exports.saveVerb = function(dados,callback){
+	db.Verbs(dados).save(function(err,result){
+		if(err) callback(err);
+		callback(result);
+	});
+};
+
+exports.updateVerb = function(dados,callback){
+	console.log(dados);
+	db.Verbs.findById(dados._id,function(err,verb){
+		if(err) callback(err);
+		if(dados.base) verb.base = dados.base;
+		if(dados.tense) verb.tense = dados.tense;
+		if(dados.participle) verb.participle = dados.participle;
+		if(dados.translation) verb.translation = dados.translation;
+		if(dados.phrase) verb.phrase = dados.phrase;
+		if(dados.hit) verb.hit = dados.hit;
+		if(dados.point) verb.point = dados.point;
+		verb.save(function(err,result){
+			if(err) callback(err);
+			callback(result);
+		});
+	});
+};

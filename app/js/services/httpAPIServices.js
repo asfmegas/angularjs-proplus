@@ -40,6 +40,18 @@ angular.module('proplus').factory('httpAPI',function($http){
 		return $http.post('http://localhost:3000/updateword',value);
 	};
 
+	let _getListVerbs = function(){
+		return $http.get('http://localhost:3000/listverbs');
+	};
+
+	let _saveVerb = function(value){
+		return $http.post('http://localhost:3000/saveverb',value);
+	};
+
+	let _updateVerb = function(value){
+		return $http.post('http://localhost:3000/updateverb',value);
+	};
+
 	return {
 		getWords: _getWords,
 		saveWord: _saveWord,
@@ -50,6 +62,9 @@ angular.module('proplus').factory('httpAPI',function($http){
 		getOneContent: _getOneContent,
 		saveText: _saveText,
 		removeText: _removeText,
-		alterarText: _alterarText
+		alterarText: _alterarText,
+		getListVerbs: _getListVerbs,
+		saveVerb: _saveVerb,
+		updateVerb: _updateVerb
 	}
 });

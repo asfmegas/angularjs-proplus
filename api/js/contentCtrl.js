@@ -22,6 +22,7 @@ exports.saveText = (dados,callback) => {
 	if(!dados.texto) dados.texto = val.trim(dados.texto);
 	if(!dados.tipo) dados.tipo = val.trim(dados.tipo);
 	if(!dados.traducao) dados.traducao = val.trim(dados.traducao);
+	// if(!dados.anotacao) dados.anotacao = val.trim(dados.anotacao);
 	new db.Contents(dados).save(function(error,text){
 		if(error) callback(error);
 		callback(text);
@@ -41,10 +42,11 @@ exports.deleteText = (id,callback) => {
 exports.updateText = (dados,callback) => {
 	db.Contents.findById(dados._id,function(error,content){
 		if(error) callback(error);
-		if(content.titulo) content.titulo = dados.titulo;
-		if(content.texto) content.texto = dados.texto;
-		if(content.traducao) content.traducao = dados.traducao;
-		if(content.tipo) content.tipo = dados.tipo;
+		if(dados.titulo) content.titulo = dados.titulo;
+		if(dados.texto) content.texto = dados.texto;
+		if(dados.traducao) content.traducao = dados.traducao;
+		if(dados.anotacao) content.anotacao = dados.anotacao;
+		if(dados.tipo) content.tipo = dados.tipo;
 		content.modifiedAt = new Date();
 		content.save(function(error,result){
 			if(error) callback(error);

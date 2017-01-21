@@ -26,10 +26,22 @@ db.once('open',function(){
 		texto:String,
 		tipo: String,
 		traducao:String,
+		anotacao:String,
 		createAt:Date,
 		modifiedAt: Date
 	});
 
+	let verbsSchema = mongoose.Schema({
+		base:String,
+		tense:String,
+		participle:String,
+		translation:String,
+		phrase:String,
+		hit:Number,
+		point:Number,
+	})
+
 	exports.Words = mongoose.model('Words',wordSchema);
 	exports.Contents = mongoose.model('Contents',contentSchema);
+	exports.Verbs = mongoose.model('Verbs',verbsSchema);
 });

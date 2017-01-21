@@ -34,3 +34,7 @@ app.get('/content/:id',contents.getOneContent);
 app.post('/savetext',contents.saveText);
 app.get('/deletetext/:id',contents.deleteText);
 app.post('/updatetext',contents.updateText);
+
+app.get('/listverbs',words.getVerbs);
+app.post('/saveverb',words.saveVerb);
+app.post('/updateverb',words.updateVerb);

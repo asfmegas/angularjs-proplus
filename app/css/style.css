@@ -276,7 +276,7 @@ div#menu-texto-dois{
 	border-radius: 5px;
 }
 
-div#principal textarea{
+.principal-textarea{
 	margin-top: 10px;
 	margin-left: 3px;
 	width: 630px;
@@ -318,6 +318,41 @@ input#titulo-texto{
 	box-shadow: -5px -5px 5px #000;
 }
 
+.anotacao{
+	z-index: 0;
+	position: fixed;
+	left: 122px;
+	top: 320px;
+	width: 830px;
+	height: 350px;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: black;
+}
+
+.anotacao-area{
+	width: 810px;
+	height: 330px;
+	font-size: 18px;
+	padding: 10px;
+}
+
+.botao-anotacao{
+	position: fixed;
+	left: 1160px;
+	top: 10px;
+	border-radius: 2px;
+	font-weight: bold;
+	font-size: 18px;
+	text-shadow: 1px 1px 3px #000;
+	text-transform: uppercase;
+	color: #fff;
+	cursor: pointer;
+	width: 120px;
+	height: 30px;
+	border: 0px;
+}
+
 /* Janela única */
 div#janela-unica{
 	position: fixed;
@@ -340,16 +375,18 @@ div#janela-unica textarea{
 }
 
 div#botao-janela-unica{
-	width: 130px;
-	margin-left: 800px;
+	display: inline-block;
+	width: 350px;
+	margin-left: 630px;
 }
 
 div#botao-janela-unica button{
-	margin-left: 60px;
-	margin-bottom: 0px;
+	margin-left: 5px;
+	margin-bottom: 10px;
 	border-radius: 5px;
 	font-size: 18px;
 	font-weight: bold;
+	text-transform: uppercase;
 	border: 0px;
 	width: 100px;
 	height: 30px;
@@ -494,6 +531,36 @@ p#sea-word-p{
 
 .cor-change-search-disable{
 	background-color: rgba(153, 0, 0, 0.4);
+}
+
+/* Formatação div confirmacao */
+div#confirmacao{
+	position: fixed;
+	left: 395px;
+	top: 200px;
+	border-radius: 10px;
+	padding: 8px;
+	width: 550px;
+	min-height: 140px;
+	text-align: center;
+	border: 2px solid rgba(255, 0, 0, 0.8);
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 3px #000;
+	color: #fff;
+}
+
+.option-button{
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+	border: 0px;
+	border-radius: 2px;
+	margin: 10px;
 }
 
 /* Rodapé */

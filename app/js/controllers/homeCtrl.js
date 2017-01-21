@@ -1,4 +1,4 @@
-angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakText){
+angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakText,joinTextsService){
 	$scope.opcaoTexto = [
 		{tipo:"Música"},
 		{tipo:"Artigo"}];
@@ -6,6 +6,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 	$scope.valueButtonSearch = "<<";
 	$scope.buttonSimpleVisible = false;
 	$scope.buttonSearchVisible = false;
+	$scope.isVisibleOptionDelete = false;
 	$scope.proplusLogo = "proplus";
 	$scope.valueBtnOnlyWords = "Text";
 	$scope.valorJanelaUnica = false;
@@ -110,6 +111,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 	// Configuração de palavra
 	$scope.exibirPalavras = function(){
 		carregarPalavras();
+		$scope.isVisibleOptionDelete = false;
 		$scope.buttonSimpleVisible = false;
 		$scope.buttonSearchVisible = false;
 		$scope.framePrincipal = false;
@@ -123,12 +125,16 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 	$scope.ocultarExibirSimples = function(){
 		$scope.isVisibleSimple = !$scope.isVisibleSimple;
 		if(!$scope.isVisibleSimple) delete $scope.simpleWord;
+		if($scope.simpleWord) delete $scope.simpleWord;
 		getSymbol($scope.isVisibleSimple, function(result){
 			$scope.valueButton = result;
 		});
 	};
 
 	$scope.exibirOcultarJanelaUnica = function(value,dados){
+		delete $scope.textTranslation;
+		$scope.valueButtonMix = "Misto";
+		$scope.isVisibleTextarea = true;
 		if(value){
 			$scope.valorJanelaUnica = value;
 			$scope.janelaUnica = dados;
@@ -170,15 +176,16 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		Função que altera o símbolo dos botões laterais
 	*/
 	let getSymbol = function(value, callback){
-		if(value) return callback(">>");
-		return callback("<<");
+		if(value) callback(">>");
+		else callback("<<");
 	};
 
-		// Obter lista das palavras
+	// Obter lista das palavras
 	let getListWords = function(callback){
 		httpAPI.getWords().then(function(result){
 			callback(result.data);
 		},function(erro){
+			alert("###### Erro ao carregar palavras #######");
 			console.log(erro);
 		});
 	};
@@ -220,7 +227,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 			carregarPalavras();
 			delete $scope.dadosWord;
 		},function(error){
-			alert("Error ao salvar dados!");
+			alert("###### Erro ao salvar dados #######");
 		});
 	};
 
@@ -233,7 +240,8 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		httpAPI.saveWord(dados).then(function(result){
 			delete $scope.simpleWord;
 		},function(error){
-			alert("Error ao salvar dados!");
+			alert("###### Erro ao salvar dados #######");
+			console.log(error);
 		});
 	};
 
@@ -243,6 +251,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 			delete $scope.wordEnter;
 			carregarPalavras();
 		},function(error){
+			alert("###### Erro ao remover dados #######");
 			console.log(error);
 		});
 	};
@@ -253,6 +262,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 			alert("Dados alterado com sucesso!");
 			carregarPalavras();
 		},function(error){
+			alert("###### Erro ao alterar dados #######");
 			console.log(error);
 		});
 	};
@@ -273,6 +283,8 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		buscarTextos();
 		ocultarSimples();
 		ocultarExibirSearch();
+		$scope.isVisibleOptionDelete = false;
+		$scope.isVisibleAnotation = false;
 		$scope.buttonSimpleVisible = false;
 		$scope.buttonSearchVisible = false;
 		$scope.framePrincipal = false;
@@ -285,12 +297,14 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		$scope.isValidButton = value;
 		ocultarSimples();
 		ocultarExibirSearch();
+		$scope.isVisibleOptionDelete = false;
+		$scope.isVisibleAnotation = false;
 		$scope.buttonSimpleVisible = false;
 		$scope.buttonSearchVisible = false;
+		$scope.corAlertaAlteracao = "botao-cor-intacto";
 		carregarTextoMenu(value);
 		delete $scope.dadosTexto;
 	};
-
 	
 	let carregarTexto = function(){
 		$scope.visibilidadeTexto = false;
@@ -320,6 +334,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		httpAPI.getContents().then(function(result){
 			callback(result.data);
 		},function(error){
+			alert("###### Erro ao carregar textos #######");
 			console.log(error);
 		});
 	};
@@ -339,6 +354,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		Remove dados do banco de dados texto
 	*/
 	$scope.removeText = function(id){
+		$scope.isVisibleOptionDelete = false;
 		httpAPI.removeText(id).then(function(result){
 			alert("Dados apagados com sucesso!");
 			buscarTextos();
@@ -361,6 +377,7 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 			if(!novosDados.texto) novosDados.texto = dados.texto;
 			if(!novosDados.traducao) novosDados.traducao = dados.traducao;
 			if(!novosDados.tipo) novosDados.tipo = dados.tipo;
+			if(!novosDados.anotacao) novosDados.anotacao = dados.anotacao;
 		};
 
 		httpAPI.saveText(novosDados).then(function(result){
@@ -377,14 +394,17 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 	/*
 		Realiza alterações no banco dos dados texto
 	*/
-	$scope.alterarText = function(dados,novosDados){
+	$scope.alterarText = function(dados){
+		console.log(dados);
+		let novosDados = {};
 		if(!novosDados){
 			novosDados = dados;
 		}else{
 			if(!novosDados.titulo) novosDados.titulo = dados.titulo;
 			if(!novosDados.texto) novosDados.texto = dados.texto;
-			if(!novosDados.id) novosDados.id = dados._id;
+			if(!novosDados._id) novosDados._id = dados._id;
 			if(!novosDados.traducao) novosDados.traducao = dados.traducao;
+			if(!novosDados.anotacao) novosDados.anotacao = dados.anotacao;
 		};
 		httpAPI.alterarText(novosDados).then(function(result){
 			alert('Dados alterados com sucesso!');
@@ -447,6 +467,9 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 				if(copiaDados.tipo !== conteudoTexto.tipo){
 					$scope.corAlertaAlteracao = "botao-cor-alterado";
 				};
+				if(copiaDados.anotacao !== conteudoTexto.anotacao){
+					$scope.corAlertaAlteracao = "botao-cor-alterado";
+				};
 			};
 		};
 	};
@@ -466,6 +489,61 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		}else{
 			$scope.valueBtnOnlyWords = "Text";
 		};
+	};
+
+	$scope.getTextBD = function(value){
+		$scope.isVisibleTextarea = !$scope.isVisibleTextarea;
+		alterarValorBotaoMisto();
+		if(!$scope.isVisibleTextarea){
+			joinTextsService.getPhrasesText(value,function(result){
+				let text = "";
+				result.forEach(function(item){
+					text += item;
+				});
+				$scope.textTranslation = text;
+			});
+		}else{
+			delete $scope.textTranslation;
+		};
+	};
+
+	let alterarValorBotaoMisto = function(){
+		if($scope.valueButtonMix === "English"){
+			$scope.valueButtonMix = "Misto";
+		}else if($scope.valueButtonMix === "Misto"){
+			$scope.valueButtonMix = "English";
+		};
+	};
+
+	$scope.exibirOcultarAnotacao = function(){
+		$scope.isVisibleAnotation = !$scope.isVisibleAnotation;
+	};
+
+	$scope.exibirOcultarOptionDelete = function(value){
+		$scope.isVisibleOptionDelete = value;
+	};
+
+	$scope.separarTextos = function(dados){
+		let dadosDuasQu = dados.split('\n\n');
+		let newText = "";
+		let dadosArray = [];
+		dadosDuasQu.forEach(function(item){
+			dadosArray.push(item.split('\n'));
+
+		});
+		dadosArray.forEach(function(elemento){
+			elemento.forEach(function(item){
+				if(item.indexOf('@') === 0){
+					newText += item+'\n';
+				};
+			});
+			newText += '\n';
+		});
+
+		$scope.dadosTexto.traducao = newText.replace(/\@/g,'');
+		$scope.valorJanelaUnica = false;
+		$scope.corAlertaAlteracao = "botao-cor-alterado";
+		delete $scope.textTranslation;
 	};
 
 });
