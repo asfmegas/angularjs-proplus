@@ -167,8 +167,13 @@ div#pesquisa-texto{
 }
 
 div#menu-texto{
+	position: fixed;
 	padding: 10px;
 	border-radius: 10px 10px 0px 0px;
+}
+
+div#conteudo-pesquisa{
+	margin-top: 70px;
 }
 
 select#selecao-texto{
@@ -176,7 +181,7 @@ select#selecao-texto{
 	font-weight: bold;
 	padding: 5px;
 	margin-bottom: 10px;
-	width: 200px;
+	width: 220px;
 	border: 0px;
 }
 
@@ -356,7 +361,7 @@ input#titulo-texto{
 /* Janela única */
 div#janela-unica{
 	position: fixed;
-	width: 1000px;
+	width: 1140px;
 	min-height: 700px;
 	border-radius: 5px;
 	padding: 20px;
@@ -404,9 +409,9 @@ a frame principal */
 div#simples-salve{
 	position: fixed;
 	border-radius: 10px;
-	width: 750px;
+	width: 700px;
 	height: 40px;
-	left: 580px;
+	left: 620px;
 	top: 130px;
 	padding: 10px;
 }
@@ -427,6 +432,7 @@ div#simples-salve{
 .sim-input{
 	padding: 5px;
 	width: 260px;
+	text-align: center;
 	font-size: 18px;
 	font-weight: bold;
 	color: #fff;
@@ -457,7 +463,7 @@ div#simples-salve{
 }
 
 /* Search Word Content */
-div#search-word{
+.search-word{
 	position: fixed;
 	left: 975px;
 	top: 190px;
@@ -465,6 +471,16 @@ div#search-word{
 	width: 350px;
 	height: 480px;
 	padding: 10px;
+}
+
+.search-word-ps2{
+	position: fixed;
+	top: 130px;
+	left: 25px;
+	width: 570px;
+	min-height: 150px;
+	padding: 10px;
+	border-radius: 5px;
 }
 
 .sea-botao-exibir{
@@ -486,8 +502,25 @@ div#search-word{
 	height: 70px;
 }
 
+.sea-word-area-ps2{
+	border-radius: 5px;
+	width: 550px;
+	height: 40px;
+}
+
 .sea-input{
 	width: 300px;
+	border-radius: 5px;
+	border: 0px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	padding: 5px;
+	text-align: center;
+}
+
+.sea-input-ps2{
+	width: 560px;
 	border-radius: 5px;
 	border: 0px;
 	font-size: 16px;
@@ -524,6 +557,20 @@ p#sea-word-p{
 	height: 30px;
 	cursor: pointer;
 }
+
+.sea-botao-modified{
+	position: fixed;
+	left: 1300px;
+	top: 280px;
+	border-radius: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	border: 0px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
 
 .cor-change-search-enable{
 	background-color: rgba(0, 77, 0, 0.4);

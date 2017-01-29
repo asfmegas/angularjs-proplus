@@ -22,7 +22,7 @@ angular.module('proplus').factory('joinTextsService',function(httpAPI){
 					trad.push('@'+item);
 				}else{
 					trad.push("");
-				}
+				};
 			});
 
 			let phrases = [];
@@ -34,7 +34,7 @@ angular.module('proplus').factory('joinTextsService',function(httpAPI){
 					phrases.push('\n');
 				}else{
 					phrases.push("");
-				}
+				};
 			};
 
 			callback(phrases);

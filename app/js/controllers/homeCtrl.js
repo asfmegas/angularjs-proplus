@@ -2,6 +2,10 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 	$scope.opcaoTexto = [
 		{tipo:"Música"},
 		{tipo:"Artigo"}];
+	$scope.valueLimitTo = 13;
+	$scope.framePosition = "search-word";
+	$scope.inputPosition = "sea-input";
+	$scope.textareaPosition = "sea-word-area";
 	$scope.valueButton = "<<";
 	$scope.valueButtonSearch = "<<";
 	$scope.buttonSimpleVisible = false;
@@ -544,6 +548,23 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		$scope.valorJanelaUnica = false;
 		$scope.corAlertaAlteracao = "botao-cor-alterado";
 		delete $scope.textTranslation;
+	};
+
+	$scope.modifiedWindowSearch = function(){
+		
+		if(!$scope.positionWindow){
+			$scope.framePosition = "search-word-ps2";
+			$scope.inputPosition = "sea-input-ps2";
+			$scope.textareaPosition = "sea-word-area-ps2";
+			$scope.valueLimitTo = 3;
+			$scope.positionWindow = !$scope.positionWindow;
+		}else if($scope.positionWindow){
+			$scope.framePosition = "search-word";
+			$scope.inputPosition = "sea-input";
+			$scope.textareaPosition = "sea-word-area";
+			$scope.valueLimitTo = 13;
+			$scope.positionWindow = !$scope.positionWindow;
+		};
 	};
 
 });

@@ -35,9 +35,11 @@
 				<button type="button" class="button1" ng-class="corFrame4" ng-click="exibirTexto()">Fechar</button>
 				<button type="button" class="btnOnlyButton" ng-class="corFrame4" ng-click="btnOnlyWordsFn()">{{valueBtnOnlyWords}}</button>
 			</div>
-			<a href="#" class="link3" ng-class="corFonte2" ng-repeat="texto in textos | filter:searchType.tipo | filter:searchText | orderBy:'titulo'">
-				<p class="selecao" ng-class="corFrame8" ng-click="openText(texto)">{{texto.titulo | uppercase}} (<span class="form-data">{{texto.createAt | date:'dd/MM/yyyy'}}</span> :: <span class="form-data">{{texto.modifiedAt | date:'dd/MM/yyyy'}}</span>)</p>
-			</a>
+			<div id="conteudo-pesquisa">
+				<a href="#" class="link3" ng-class="corFonte2" ng-repeat="texto in textos | filter:searchType.tipo | filter:searchText | orderBy:'titulo'">
+					<p class="selecao" ng-class="corFrame8" ng-click="openText(texto)">{{texto.titulo | uppercase}} (<span class="form-data">{{texto.createAt | date:'dd/MM/yyyy'}}</span> :: <span class="form-data">{{texto.modifiedAt | date:'dd/MM/yyyy'}}</span>)</p>
+				</a>
+			</div>
 		</div>
 
 		<div id="pesquisa-palavras" ng-class="corFrame2" ng-show="visibilidadePalavras" ng-cloak>
@@ -129,10 +131,10 @@
 			</div>
 		</div>
 
-		<div id="search-word" ng-class="corFrame2" ng-show="isVisibleSearch" ng-cloak>
-			<textarea class="sea-word-area textarea1 font-cor-padrao3" ng-class="corFrame5" ng-value="seaOnlyWord" cols="30" rows="10"></textarea><br/>
-			<input type="text" class="sea-input" ng-focus="limparSeaWord()" ng-class="corFrame6" ng-model="seaWord" placeholder="Search">
-			<a href="" id="sea-word" ng-click="seaOneWord(palavra.traducao)" ng-repeat="palavra in palavras | filter:seaWord | filter:'Palavra' | filter:simpleWord.nome | orderBy:'nome' | limitTo:13">
+		<div ng-class="[framePosition,corFrame2]" ng-show="isVisibleSearch" ng-cloak>
+			<textarea class="textarea1 font-cor-padrao3" ng-class="[textareaPosition,corFrame5]" ng-value="seaOnlyWord" cols="30" rows="10"></textarea><br/>
+			<input type="text" ng-focus="limparSeaWord()" ng-class="[inputPosition,corFrame6]" ng-model="seaWord" placeholder="Search">
+			<a href="" id="sea-word" ng-click="seaOneWord(palavra.traducao)" ng-repeat="palavra in palavras | filter:seaWord | filter:'Palavra' | filter:simpleWord.nome | orderBy:'nome' | limitTo:valueLimitTo">
 				<p id="sea-word-p" ng-class="[corFrame8,corFonte3]">{{palavra.nome}}</p>
 			</a>
 		</div>
@@ -149,6 +151,8 @@
 		<button type="button" class="sea-botao-exibir sim-botao-efeito" ng-show="buttonSearchVisible" ng-class="corFrame4" ng-click="ocultarExibirSearch(true)" ng-cloak>{{valueButtonSearch}}</button>
 
 		<button type="button" class="sea-botao-enable sim-botao-efeito" ng-class="corEspecial" ng-show="isVisibleSearch" ng-click="changeSearch()" ng-cloak></button>
+
+		<button type="button" class="sea-botao-modified sim-botao-efeito" ng-class="corFrame4" ng-show="isVisibleSearch" ng-click="modifiedWindowSearch()" ng-cloak></button>
 
 		<div id="rodape" ng-class="corFrame2">Alexsandro Façanha - asfsteel2012@gmail.com </div>
 	</div>	
