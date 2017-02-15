@@ -361,11 +361,11 @@ input#titulo-texto{
 /* Janela única */
 div#janela-unica{
 	position: fixed;
-	width: 1140px;
+	width: 1340px;
 	min-height: 700px;
 	border-radius: 5px;
 	padding: 20px;
-	left: 160px;
+	left: 10px;
 	top: 10px;
 }
 
@@ -374,7 +374,7 @@ div#janela-unica textarea{
 	font-weight: bold;
 	color: #000;
 	margin-left: 40px;
-	width: 900px;
+	width: 1200px;
 	height: 660px;
 	border-radius: 10px;
 }
@@ -382,7 +382,7 @@ div#janela-unica textarea{
 div#botao-janela-unica{
 	display: inline-block;
 	width: 350px;
-	margin-left: 630px;
+	margin-left: 830px;
 }
 
 div#botao-janela-unica button{

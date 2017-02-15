@@ -399,7 +399,6 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		Realiza alterações no banco dos dados texto
 	*/
 	$scope.alterarText = function(dados){
-		console.log(dados);
 		let novosDados = {};
 		if(!novosDados){
 			novosDados = dados;
@@ -550,8 +549,10 @@ angular.module('proplus').controller('homeCtrl',function($scope,httpAPI,breakTex
 		delete $scope.textTranslation;
 	};
 
-	$scope.modifiedWindowSearch = function(){
-		
+	/*
+		Alterar a posição da janela Search e formatar o tamanho
+	*/
+	$scope.modifiedWindowSearch = function(){	
 		if(!$scope.positionWindow){
 			$scope.framePosition = "search-word-ps2";
 			$scope.inputPosition = "sea-input-ps2";
