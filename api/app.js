@@ -15,12 +15,12 @@ app.all('*', function(req, res, next) {
   next();
 });
 	
-app.listen(process.env.PORT || 3000,function(){
-	console.log("Servidor rodando na porta 3000...");
+app.listen(process.env.PORT || 3002,function(){
+	console.log("Servidor rodando na porta 3002...");
 });
 
 app.get('/',function(req,res){
-	res.json({'nome':'servidor 3000'});
+	res.json({'nome':'servidor 3002'});
 });
 
 app.get('/words', words.getWords);

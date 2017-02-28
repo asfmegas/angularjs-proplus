@@ -1,55 +1,55 @@
-angular.module('proplus').factory('httpAPI',function($http){
+angular.module('proplus').factory('httpAPI',function($http,config){
 
 	let _getWords = function(){
-		return $http.get('http://localhost:3000/words');
+		return $http.get(config.BASE_URL+'/words');
 	};
 
 	let _getSelectWords = function(value){
-		return $http.post('http://localhost:3000/wordsselect',value);
+		return $http.post(config.BASE_URL+'/wordsselect',value);
 	};
 
 	let _getContents = function(){
-		return $http.get('http://localhost:3000/contents');
+		return $http.get(config.BASE_URL+'/contents');
 	}
 
 	let _getOneContent = function(value){
-		return $http.get('http://localhost:3000/content/'+value);
+		return $http.get(config.BASE_URL+'/content/'+value);
 	}
 
 	let _saveText = function(value){
-		return $http.post('http://localhost:3000/savetext',value);
+		return $http.post(config.BASE_URL+'/savetext',value);
 	}
 
 	let _removeText = function(id){
-		return $http.get('http://localhost:3000/deletetext/'+id);
+		return $http.get(config.BASE_URL+'/deletetext/'+id);
 	};
 
 	let _alterarText = function(value){
-		return $http.post('http://localhost:3000/updatetext',value)
+		return $http.post(config.BASE_URL+'/updatetext',value)
 	};
 
 	let _saveWord = function(value){
-		return $http.post('http://localhost:3000/saveword',value);
+		return $http.post(config.BASE_URL+'/saveword',value);
 	};
 
 	let _removeWord = function(id){
-		return $http.get('http://localhost:3000/deleteword/'+id);
+		return $http.get(config.BASE_URL+'/deleteword/'+id);
 	};
 
 	let _updateWord = function(value){
-		return $http.post('http://localhost:3000/updateword',value);
+		return $http.post(config.BASE_URL+'/updateword',value);
 	};
 
 	let _getListVerbs = function(){
-		return $http.get('http://localhost:3000/listverbs');
+		return $http.get(config.BASE_URL+'/listverbs');
 	};
 
 	let _saveVerb = function(value){
-		return $http.post('http://localhost:3000/saveverb',value);
+		return $http.post(config.BASE_URL+'/saveverb',value);
 	};
 
 	let _updateVerb = function(value){
-		return $http.post('http://localhost:3000/updateverb',value);
+		return $http.post(config.BASE_URL+'/updateverb',value);
 	};
 
 	return {
